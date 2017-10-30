@@ -3,6 +3,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,34 +12,25 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
     <context:component-scan base-package="tutorial.core.repositories.jpa"/>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-        <property name="username" value="sa"/>
-        <property name="password" value="sa"/>
-        <property name="url" value="jdbc:h2:mem:test"/>
-        <property name="driverClassName" value="org.h2.Driver"/>
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+        <property name="host" value="rajesh23427:Test123@ds237855.mlab.com" />
+        <property name="port" value="37855" />
     </bean>
-
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-        </property>
-        <property name="jpaProperties">
-            <map>
-                <entry key="hibernate.hbm2ddl.auto" value="create-drop"/>
-                <entry key="hibernate.show_sql" value="true"/>
-            </map>
-        </property>
-        <property name="packagesToScan" value="tutorial.core.models.entities"/>
+    
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg name="databaseName" value="taf-db"/>
     </bean>
+    
+    <mongo:repositories base-package="tututorial.core.repositories"/>
 
     <tx:annotation-driven/>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
     <context:component-scan base-package="tutorial.core.services.impl"/>
 </beans>
