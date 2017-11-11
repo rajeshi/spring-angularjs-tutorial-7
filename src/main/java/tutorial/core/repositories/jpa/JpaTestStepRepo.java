@@ -6,7 +6,7 @@ import tutorial.core.models.entities.TestStep;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import tutorial.core.repositories.TestStepRepo;
@@ -18,7 +18,7 @@ import tutorial.core.repositories.TestStepRepo;
 public class JpaTestStepRepo implements TestStepRepo {
 
     @Autowired
-    MongoOperations mongoTemplate;
+    MongoTemplate mongoTemplate;
 
     @Override
     public TestStep findTestStep(Long id) {

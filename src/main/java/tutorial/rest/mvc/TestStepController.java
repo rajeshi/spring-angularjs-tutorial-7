@@ -44,8 +44,8 @@ public class TestStepController {
 
     @RequestMapping(value = "/{testScriptId}",
             method = RequestMethod.GET)
-    public ResponseEntity<TestStepResource> getTestScriptById(@PathVariable Long testStepId) {
-        TestStep blog = testScriptService.getTestStepById(testStepId);
+    public ResponseEntity<TestStepResource> getTestScriptById(@PathVariable Long testScriptId) {
+        TestStep blog = testScriptService.getTestStepById(testScriptId);
         if (blog != null) {
             TestStepResource res = new TestStepResourceAsm().toResource(blog);
             return new ResponseEntity<TestStepResource>(res, HttpStatus.OK);

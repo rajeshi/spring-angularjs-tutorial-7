@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by Rajesh on 10/25/17.
  */
-@Document
+@Document(collection="testStep")
 public class TestStep implements Serializable{
 
     @Id
