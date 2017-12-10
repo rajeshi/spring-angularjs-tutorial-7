@@ -24,8 +24,8 @@ public class TestStepServiceImpl implements TestStepService {
     }
 
     @Override
-    public TestStepList findAllTestSteps() {
-        return new TestStepList(testStepRepo.findAllTestSteps());
+    public TestStepList findAllTestSteps(int offset) {
+        return new TestStepList(testStepRepo.findAllTestSteps(offset));
     }
 
     @Override

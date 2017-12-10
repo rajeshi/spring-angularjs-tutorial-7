@@ -49,9 +49,11 @@ public class JpaTestStepRepo implements TestStepRepo {
     }
 
     @Override
-    public List<TestStep> findAllTestSteps() {
+    public List<TestStep> findAllTestSteps(int offset) {
         Query query = new Query();
         query.with(new Sort(Sort.Direction.DESC, "_id"));
-        return (ArrayList<TestStep>)mongoTemplate.find(query, TestStep.class);
+        List<TestStep> steps = (ArrayList<TestStep>) mongoTemplate.find(query, TestStep.class);
+        int size = steps.size();
+        return offset + 10 < size ? new ArrayList(steps.subList(offset, offset + 10)) : new ArrayList(steps.subList(offset, size));
     }
 }

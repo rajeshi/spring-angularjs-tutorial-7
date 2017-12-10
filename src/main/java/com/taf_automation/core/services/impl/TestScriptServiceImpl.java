@@ -29,8 +29,8 @@ public class TestScriptServiceImpl implements TestScriptService {
     }
 
     @Override
-    public TestScriptList listAllTestScripts() {
-        return new TestScriptList(testScriptRepo.listAllTestScripts());
+    public TestScriptList listAllTestScripts(int offset) {
+        return new TestScriptList(testScriptRepo.listAllTestScripts(offset));
     }
 
     @Override

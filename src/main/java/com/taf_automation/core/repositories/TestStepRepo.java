@@ -24,5 +24,5 @@ public interface TestStepRepo {
 
     public TestStep createTestStep(TestStep data);
 
-    public List<TestStep> findAllTestSteps();
+    public List<TestStep> findAllTestSteps(int offset);
 }

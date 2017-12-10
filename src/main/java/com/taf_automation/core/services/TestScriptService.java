@@ -14,7 +14,7 @@ public interface TestScriptService {
 
     public TestScript getTestScriptById(String id);
 
-    public TestScriptList listAllTestScripts();
+    public TestScriptList listAllTestScripts(int offset);
 
     public TestScript updateTestScript(String id, TestScript testScript);
 

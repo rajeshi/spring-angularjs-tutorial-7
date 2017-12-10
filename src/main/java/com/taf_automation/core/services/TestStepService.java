@@ -15,7 +15,7 @@ public interface TestStepService {
      */
     public TestStep createTestStep(TestStep data);
 
-    public TestStepList findAllTestSteps();
+    public TestStepList findAllTestSteps(int offset);
 
     public TestStep getTestStepById(String testStepId);
 

@@ -10,15 +10,24 @@ import com.taf_automation.core.models.entities.TestStepProperties;
  */
 public class TestStepResource extends ResourceSupport {
 
+    private String id;
     private String title;
-    private List<TestStepProperties> testProperties;
+    private List<TestStepProperties> testStepProperties;
 
-    public List<TestStepProperties> getTestProperties() {
-        return testProperties;
+    public List<TestStepProperties> getTestStepProperties() {
+        return testStepProperties;
     }
 
-    public void setTestProperties(List<TestStepProperties> testProperties) {
-        this.testProperties = testProperties;
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String id) {
+        this.id = id;
+    }    
+
+    public void setTestStepProperties(List<TestStepProperties> testStepProperties) {
+        this.testStepProperties = testStepProperties;
     }
 
     public String getTitle() {
@@ -31,8 +40,9 @@ public class TestStepResource extends ResourceSupport {
 
     public TestStep toTestStep() {
         TestStep testStep = new TestStep();
+        testStep.setId(id);
         testStep.setTitle(title);
-        testStep.setTestStepProperties(testProperties);
+        testStep.setTestStepProperties(testStepProperties);
         return testStep;
     }
 }

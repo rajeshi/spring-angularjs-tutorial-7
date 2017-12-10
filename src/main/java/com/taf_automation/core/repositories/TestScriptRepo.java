@@ -1,7 +1,6 @@
 package com.taf_automation.core.repositories;
 
 import com.taf_automation.core.models.entities.TestScript;
-import com.taf_automation.core.services.util.TestScriptList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public interface TestScriptRepo {
 
     public TestScript getTestScriptById(String id);
 
-    public List<TestScript> listAllTestScripts();
+    public List<TestScript> listAllTestScripts(int offset);
 
     public TestScript updateTestScript(String id, TestScript testScript);
 

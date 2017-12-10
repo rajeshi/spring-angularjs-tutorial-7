@@ -19,8 +19,9 @@ public class TestStepResourceAsm extends ResourceAssemblerSupport<TestStep, Test
     @Override
     public TestStepResource toResource(TestStep testStep) {
         TestStepResource resource = new TestStepResource();
+        resource.setID(testStep.getId());
         resource.setTitle(testStep.getTitle());
-        resource.setTestProperties(testStep.getTestStepProperties());
+        resource.setTestStepProperties(testStep.getTestStepProperties());
         resource.add(linkTo(TestStepController.class).slash(testStep.getId()).withSelfRel());
         return resource;
     }

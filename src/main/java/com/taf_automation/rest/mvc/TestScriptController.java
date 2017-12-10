@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -28,16 +29,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/rest/api/scripts")
 public class TestScriptController {
 
-    private TestScriptService testScriptService;
+    private final TestScriptService testScriptService;
 
     @Autowired
     public TestScriptController(TestScriptService testScriptService) {
         this.testScriptService = testScriptService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<TestScriptListResource> getAllTestSteps() {
-        TestScriptList testScriptList = testScriptService.listAllTestScripts();
+    @RequestMapping(method = RequestMethod.GET,params = "offset")
+    public ResponseEntity<TestScriptListResource> getAllTestSteps(@RequestParam("offset") int offset) {
+        TestScriptList testScriptList = testScriptService.listAllTestScripts(offset);
         TestScriptListResource testStepListRes = new TestScriptResourceListAsm().toResource(testScriptList);
         return new ResponseEntity<TestScriptListResource>(testStepListRes, HttpStatus.OK);
     }
@@ -69,6 +70,9 @@ public class TestScriptController {
         try {
             createdBlogEntry = testScriptService.createTestScript(sentTestScript.toTestScript());
             TestScriptResource createdResource = new TestScriptResourceAsm().toResource(createdBlogEntry);
+            String link = createdResource.getLink("self").getHref();
+            String id = link.substring(link.lastIndexOf("/"));
+            createdResource.setID(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
             return new ResponseEntity<TestScriptResource>(createdResource, headers, HttpStatus.CREATED);

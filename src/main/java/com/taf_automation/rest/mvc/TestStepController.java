@@ -20,6 +20,7 @@ import java.net.URI;
 import com.taf_automation.core.services.TestStepService;
 import com.taf_automation.core.services.util.TestStepList;
 import com.taf_automation.rest.resources.TestStepListResource;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Rajesh on 11/3/17
@@ -35,9 +36,9 @@ public class TestStepController {
         this.testStepService = testScriptService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<TestStepListResource> getAllTestSteps() {
-        TestStepList testStepList = testStepService.findAllTestSteps();
+    @RequestMapping(method = RequestMethod.GET, params = {"offset"})
+    public ResponseEntity<TestStepListResource> getAllTestSteps(@RequestParam("offset") int offset) {
+        TestStepList testStepList = testStepService.findAllTestSteps(offset);
         TestStepListResource testStepListRes = new TestStepResourceListAsm().toResource(testStepList);
         return new ResponseEntity<TestStepListResource>(testStepListRes, HttpStatus.OK);
     }

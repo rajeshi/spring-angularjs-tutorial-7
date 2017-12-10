@@ -26,6 +26,7 @@ import com.taf_automation.core.services.TestStepService;
  * Created by Rajesh on 11/3/17
  */
 public class TestStepControllerTest {
+
     @InjectMocks
     private TestStepController controller;
 
@@ -55,11 +56,11 @@ public class TestStepControllerTest {
 
         TestStepList allBlogs = new TestStepList(list);
 
-        when(testStepService.findAllTestSteps()).thenReturn(allBlogs);
+        when(testStepService.findAllTestSteps(1)).thenReturn(allBlogs);
 
-        mockMvc.perform(get("/rest/api/steps"))
+        mockMvc.perform(get("/rest/api/steps?offset=1"))
                 //andExpect(jsonPath("$.testStepResource[*].title",
-                  //      hasItems(endsWith("Title A"), endsWith("Title B"))))
+                //      hasItems(endsWith("Title A"), endsWith("Title B"))))
                 .andExpect(status().isOk());
     }
 
@@ -104,7 +105,6 @@ public class TestStepControllerTest {
                 .andExpect(header().string("Location", endsWith("rest/api/steps/1")))
                 .andExpect(status().isCreated());*/
     }
-
 
     @Test
     public void createBlogEntryNonExistingBlog() throws Exception {
