@@ -19,6 +19,7 @@ public class PageResourceAsm extends ResourceAssemblerSupport<Page, PageResource
     public PageResource toResource(Page t) {
         PageResource resource = new PageResource();
         resource.setPageId(t.getPageId());
+        resource.setPageName(t.getPageName());
         return resource;
     }
 

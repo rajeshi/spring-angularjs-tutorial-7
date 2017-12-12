@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Configuration
-@ComponentScan(basePackages = "tutorial.core.repositories")
+@ComponentScan(basePackages = "com.taf_automation.core.repositories")
 public class AppConfiguration {
 
     @Bean
@@ -20,12 +20,12 @@ public class AppConfiguration {
 
     @Bean
     public MongoDbFactory mongoDbFactory() {
-        return new SimpleMongoDbFactory(mongoClient(), "taf-db");
+        return new SimpleMongoDbFactory(mongoClient(), "test-selenium");
     }
 
     @Bean
     public MongoClient mongoClient() {
-        return new MongoClient(new MongoClientURI("mongodb://admin:admin@ds237855.mlab.com:37855/taf-db"));
+        return new MongoClient(new MongoClientURI("mongodb://nitin:nitin1234@ds044577.mlab.com:44577/test-selenium"));
     }
 
 }

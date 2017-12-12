@@ -1,7 +1,6 @@
 package com.taf_automation.rest.resources;
 
 import com.taf_automation.core.models.entities.Page;
-import java.util.List;
 import org.springframework.hateoas.ResourceSupport;
 
 /**
@@ -11,6 +10,17 @@ import org.springframework.hateoas.ResourceSupport;
 public class PageResource extends ResourceSupport {
 
     private String pageId;
+    private String pageName;
+
+    public String getPageName() {
+        return pageName;
+    }
+
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
+    }
+    
+    
 
     public String getPageId() {
         return pageId;
@@ -23,6 +33,7 @@ public class PageResource extends ResourceSupport {
     public Page toPage() {
         Page page = new Page();
         page.setPageId(pageId);
+        page.setPageName(pageName);
         return page;
     }
 }
