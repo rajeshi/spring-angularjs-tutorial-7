@@ -60,6 +60,18 @@ public class TestStepDefinitionController {
         }
     }
 
+    @RequestMapping(value = "/step/{testStepDefinitionId}",
+            method = RequestMethod.GET)
+    public ResponseEntity<TestStepDefinitionResource> getTestStepDefinitionByTestStepId(@PathVariable String testStepId) {
+        TestStepDefinition testStepDefinition = testStepDefinitionService.getStepDefinitionById(testStepId);
+        if (testStepDefinition != null) {
+            TestStepDefinitionResource res = new TestStepDefinitionResourceAsm().toResource(testStepDefinition);
+            return new ResponseEntity<TestStepDefinitionResource>(res, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<TestStepDefinitionResource>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/{testStepDefinitionId}",
             method = RequestMethod.DELETE)
     public ResponseEntity<TestStepDefinitionResource> deleteScript(@PathVariable String testStepDefinitionId) {

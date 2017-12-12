@@ -43,4 +43,9 @@ public class TestStepDefinitionsServiceImpl implements TestStepDefinitionService
         testStepDefinitionRepo.deleteTestStepDefinition(id);
     }
 
+    @Override
+    public TestStepDefinition getStepDefinitionByStepId(String id) {
+        return testStepDefinitionRepo.getStepDefinitionByStepId(id);
+    }
+
 }

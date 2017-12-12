@@ -18,4 +18,6 @@ public interface TestStepDefinitionRepo {
     public void updateTestStepDefinition(String id, TestStepDefinition testStepDefinition);
 
     public void deleteTestStepDefinition(String id);
+
+    public TestStepDefinition getStepDefinitionByStepId(String id);
 }

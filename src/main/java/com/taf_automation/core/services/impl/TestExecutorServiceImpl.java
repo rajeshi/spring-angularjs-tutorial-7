@@ -1,17 +1,66 @@
 package com.taf_automation.core.services.impl;
 
+import com.taf_automation.core.models.entities.Action;
+import com.taf_automation.core.models.entities.Locator;
+import com.taf_automation.core.models.entities.TestData;
 import com.taf_automation.core.models.entities.TestExecutor;
+import com.taf_automation.core.models.entities.TestScript;
+import com.taf_automation.core.models.entities.TestStep;
+import com.taf_automation.core.models.entities.TestStepDefinition;
+import com.taf_automation.core.repositories.ActionRepo;
+import com.taf_automation.core.repositories.LocatorRepo;
+import com.taf_automation.core.repositories.TestExecutorRepo;
+import com.taf_automation.core.repositories.TestScriptRepo;
+import com.taf_automation.core.repositories.TestStepDefinitionRepo;
+import com.taf_automation.core.repositories.TestStepRepo;
 import com.taf_automation.core.services.TestExecutorService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Rajesh
  */
-public class TestExecutorServiceImpl implements TestExecutorService{
+@Service
+public class TestExecutorServiceImpl implements TestExecutorService {
+
+    @Autowired
+    private TestExecutorRepo testExecutorRepo;
+
+    @Autowired
+    private TestScriptRepo testScriptRepo;
+
+    @Autowired
+    private TestStepRepo testStepRepo;
+
+    @Autowired
+    private TestStepDefinitionRepo testStepDefinitionRepo;
+
+    @Autowired
+    private ActionRepo actionRepo;
+
+    @Autowired
+    private LocatorRepo locatorRepo;
 
     @Override
     public void executeTests(TestExecutor executor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TestScript testScript = testScriptRepo.getTestScriptById(executor.getTestExecutorId());
+        List<TestStep> testSteps = testScript.getTestSteps();
+        List<TestData> testData = testScript.getTestData();
+        for (TestData row : testData) {
+            for (TestStep testStep : testSteps) {
+                TestStepDefinition testStepDef = testStepDefinitionRepo.getStepDefinitionByStepId(testStep.getId());
+                for (String actionId : testStepDef.getActions()) {
+                    Action action = actionRepo.getActionById(actionId);
+                    String locatorId = action.getLocatorId();
+                    Locator locator = locatorRepo.getLocatorById(locatorId);
+                    String locatorBy = locator.getLocatorBy();
+                    String act = action.getAction();
+                    //String input = row.
+                }
+            }
+        }
     }
-   
+
 }

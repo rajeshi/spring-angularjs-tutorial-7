@@ -53,4 +53,10 @@ public class JpaTestStepDefinitionRepo implements TestStepDefinitionRepo {
         mongoTemplate.remove(query, TestStepDefinition.class);
     }
 
+    @Override
+    public TestStepDefinition getStepDefinitionByStepId(String id) {
+        Query query = new Query(Criteria.where("testStepId").is(id));
+        return mongoTemplate.findOne(query, TestStepDefinition.class);
+    }
+
 }
