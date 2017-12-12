@@ -13,8 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Page implements Serializable{
     @Id
     private String pageId;
-    private List<String> pageObjectId;
-    private List<String> actionsId;
 
     public String getPageId() {
         return pageId;
@@ -24,19 +22,4 @@ public class Page implements Serializable{
         this.pageId = pageId;
     }
 
-    public List<String> getPageObjectId() {
-        return pageObjectId;
-    }
-
-    public void setPageObjectId(List<String> pageObjectId) {
-        this.pageObjectId = pageObjectId;
-    }
-
-    public List<String> getActionsId() {
-        return actionsId;
-    }
-
-    public void setActionsId(List<String> actionsId) {
-        this.actionsId = actionsId;
-    }
 }
