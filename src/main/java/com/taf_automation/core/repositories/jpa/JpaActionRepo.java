@@ -1,7 +1,6 @@
 package com.taf_automation.core.repositories.jpa;
 
 import com.taf_automation.core.models.entities.Action;
-import com.taf_automation.core.models.entities.Page;
 import com.taf_automation.core.repositories.ActionRepo;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,7 @@ public class JpaActionRepo implements ActionRepo {
     @Override
     public void deleteAction(String id) {
         Query query = new Query(Criteria.where("_id").is(id));
-        mongoTemplate.remove(query, Page.class);
+        mongoTemplate.remove(query, Action.class);
     }
 
 }

@@ -8,6 +8,7 @@ package com.taf_automation.rest.resources.asm;
 import com.taf_automation.core.models.entities.TestExecutor;
 import com.taf_automation.rest.mvc.TestExecutionController;
 import com.taf_automation.rest.resources.TestExecutorResource;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 /**
@@ -26,6 +27,7 @@ public class TestExecutorResourceAsm extends ResourceAssemblerSupport<TestExecut
         testExecutorResource.setConfigurationId(t.getConfigurationId());
         testExecutorResource.setTestScriptId(t.getTestScriptId());
         testExecutorResource.setTestExecutorId(t.getTestExecutorId());
+        testExecutorResource.add(linkTo(TestExecutionController.class).slash(t.getTestExecutorId()).withSelfRel());
         return testExecutorResource;
     }
 

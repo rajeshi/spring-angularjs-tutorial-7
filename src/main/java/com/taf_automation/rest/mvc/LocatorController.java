@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Rajesh
  */
 @Controller
-@RequestMapping("/rest/api/loctors")
+@RequestMapping("/rest/api/locators")
 public class LocatorController {
 
     private final LocatorService locationService;
@@ -70,9 +70,6 @@ public class LocatorController {
         try {
             createdBlogEntry = locationService.createLocator(sentLocator.toLocator());
             LocatorResource createdResource = new LocatorResourceAsm().toResource(createdBlogEntry);
-            String link = createdResource.getLink("self").getHref();
-            String id = link.substring(link.lastIndexOf("/"));
-            createdResource.setLocatorId(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
             return new ResponseEntity<LocatorResource>(createdResource, headers, HttpStatus.CREATED);

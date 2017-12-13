@@ -70,9 +70,6 @@ public class PageController {
         try {
             createdBlogEntry = pageService.createPage(sentPage.toPage());
             PageResource createdResource = new PageResourceAsm().toResource(createdBlogEntry);
-            String link = createdResource.getLink("self").getHref();
-            String id = link.substring(link.lastIndexOf("/"));
-            createdResource.setPageId(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
             return new ResponseEntity<PageResource>(createdResource, headers, HttpStatus.CREATED);

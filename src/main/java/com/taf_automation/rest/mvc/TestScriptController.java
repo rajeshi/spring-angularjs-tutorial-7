@@ -70,9 +70,6 @@ public class TestScriptController {
         try {
             createdBlogEntry = testScriptService.createTestScript(sentTestScript.toTestScript());
             TestScriptResource createdResource = new TestScriptResourceAsm().toResource(createdBlogEntry);
-            String link = createdResource.getLink("self").getHref();
-            String id = link.substring(link.lastIndexOf("/"));
-            createdResource.setID(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
             return new ResponseEntity<TestScriptResource>(createdResource, headers, HttpStatus.CREATED);

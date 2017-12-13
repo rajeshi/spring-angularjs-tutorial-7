@@ -3,6 +3,7 @@ package com.taf_automation.rest.resources.asm;
 import com.taf_automation.core.models.entities.Action;
 import com.taf_automation.rest.mvc.ActionController;
 import com.taf_automation.rest.resources.ActionResource;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 /**
@@ -23,6 +24,7 @@ public class ActionResourceAsm extends ResourceAssemblerSupport<Action, ActionRe
         resource.setInput(action.getInput());
         resource.setOutput(action.getOutput());
         resource.setLocatorId(action.getLocatorId());
+        resource.add(linkTo(ActionController.class).slash(action.getActionId()).withSelfRel());
         return resource;
     }
 

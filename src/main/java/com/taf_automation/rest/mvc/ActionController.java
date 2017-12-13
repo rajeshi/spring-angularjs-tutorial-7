@@ -69,9 +69,6 @@ public class ActionController {
         try {
             createdBlogEntry = actionService.createAction(sentAction.toAction());
             ActionResource createdResource = new ActionResourceAsm().toResource(createdBlogEntry);
-            String link = createdResource.getLink("self").getHref();
-            String id = link.substring(link.lastIndexOf("/"));
-            createdResource.setActionId(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
             return new ResponseEntity<ActionResource>(createdResource, headers, HttpStatus.CREATED);
