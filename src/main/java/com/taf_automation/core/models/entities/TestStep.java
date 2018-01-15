@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TestStep implements Serializable {
 
     @Id
-    private String id;
+    private String testStepId;
 
     private String title;
 
@@ -26,12 +26,12 @@ public class TestStep implements Serializable {
         this.title = title;
     }
 
-    public String getId() {
-        return id;
+    public String getTestStepId() {
+        return testStepId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTestStepId(String testStepId) {
+        this.testStepId = testStepId;
     }
 
     public List<TestStepProperties> getTestStepProperties() {

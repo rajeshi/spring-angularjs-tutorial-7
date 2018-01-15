@@ -33,7 +33,7 @@ public class TestStepRepoTest {
     //@Transactional
     public void testFind()
     {
-        TestStep testStep = repo.findTestStep(this.testStep.getId());
+        TestStep testStep = repo.findTestStep(this.testStep.getTestStepId());
         //assertNotNull(testStep);
     }
 }

@@ -40,7 +40,7 @@ public class TestStepResource extends ResourceSupport {
 
     public TestStep toTestStep() {
         TestStep testStep = new TestStep();
-        testStep.setId(id);
+        testStep.setTestStepId(id);
         testStep.setTitle(title);
         testStep.setTestStepProperties(testStepProperties);
         return testStep;

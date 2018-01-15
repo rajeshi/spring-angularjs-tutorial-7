@@ -25,7 +25,7 @@ public class AppConfiguration {
 
     @Bean
     public MongoClient mongoClient() {
-        return new MongoClient(new MongoClientURI("mongodb://nitin:nitin1234@ds044577.mlab.com:44577/test-selenium"));
+        return new MongoClient(new MongoClientURI("mongodb://rajesh:rajesh1234@ec2-18-218-111-99.us-east-2.compute.amazonaws.com:27017/test-selenium"));
     }
 
 }

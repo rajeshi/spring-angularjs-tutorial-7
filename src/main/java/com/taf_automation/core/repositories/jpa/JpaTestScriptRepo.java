@@ -1,7 +1,6 @@
 package com.taf_automation.core.repositories.jpa;
 
 import com.taf_automation.core.models.entities.TestScript;
-import com.taf_automation.core.models.entities.TestStep;
 import com.taf_automation.core.repositories.TestScriptRepo;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,8 @@ public class JpaTestScriptRepo implements TestScriptRepo {
     public TestScript updateTestScript(String id, TestScript data) {
         Query query = new Query(Criteria.where("_id").is(id));
         TestScript testScript = mongoTemplate.findOne(query, TestScript.class);
-        testScript.setId(data.getId());
         testScript.setTestData(data.getTestData());
-        testScript.setTestSteps(data.getTestSteps());
+        testScript.setTestStepIds(data.getTestStepIds());
         mongoTemplate.save(testScript);
         return testScript;
     }

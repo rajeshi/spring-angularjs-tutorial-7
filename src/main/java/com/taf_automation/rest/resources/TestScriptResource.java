@@ -1,9 +1,8 @@
 package com.taf_automation.rest.resources;
 
-import com.taf_automation.core.models.entities.TestData;
 import com.taf_automation.core.models.entities.TestScript;
-import com.taf_automation.core.models.entities.TestStep;
 import java.util.List;
+import java.util.Map;
 import org.springframework.hateoas.ResourceSupport;
 
 /**
@@ -14,19 +13,9 @@ public class TestScriptResource extends ResourceSupport {
 
     private String name;
     private String type;
-    private List<TestStep> steps;
-    private List<TestData> data;
-    private String id;
-
-    public String getID() {
-        return id;
-    }
-
-    public void setID(String id) {
-        this.id = id;
-    }
-    
-    
+    private List<String> steps;
+    private List<Map<String, String>> data;
+    private String testScriptId;
 
     public String getName() {
         return name;
@@ -44,29 +33,37 @@ public class TestScriptResource extends ResourceSupport {
         this.type = type;
     }
 
-    public List<TestStep> getSteps() {
+    public List<String> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<TestStep> steps) {
+    public void setSteps(List<String> steps) {
         this.steps = steps;
     }
 
-    public List<TestData> getData() {
+    public List<Map<String, String>> getData() {
         return data;
     }
 
-    public void setData(List<TestData> data) {
+    public void setData(List<Map<String, String>> data) {
         this.data = data;
     }
-    
+
+    public String getTestScriptId() {
+        return testScriptId;
+    }
+
+    public void setTestScriptId(String testScriptId) {
+        this.testScriptId = testScriptId;
+    }
+
     public TestScript toTestScript() {
         TestScript script = new TestScript();
         script.setName(name);
-        script.setId(id);
+        script.setTestScriptId(testScriptId);
         script.setType(type);
         script.setTestData(data);
-        script.setTestSteps(steps);
+        script.setTestStepIds(steps);
         return script;
     }
 

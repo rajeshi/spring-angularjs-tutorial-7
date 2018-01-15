@@ -2,6 +2,7 @@ package com.taf_automation.core.models.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,18 +10,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TestScript implements Serializable {
 
     @Id
-    private String id;
+    private String testScriptId;
     private String name;
     private String type;
-    private List<TestStep> testSteps;
-    private List<TestData> testData;
+    private List<String> testStepIds;
+    private List<Map<String, String>> testData;
 
-    public String getId() {
-        return id;
+    public String getTestScriptId() {
+        return testScriptId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTestScriptId(String testScriptId) {
+        this.testScriptId = testScriptId;
     }
 
     public String getName() {
@@ -39,19 +40,19 @@ public class TestScript implements Serializable {
         this.type = type;
     }
 
-    public List<TestStep> getTestSteps() {
-        return testSteps;
+    public List<String> getTestStepIds() {
+        return testStepIds;
     }
 
-    public void setTestSteps(List<TestStep> testSteps) {
-        this.testSteps = testSteps;
+    public void setTestStepIds(List<String> testStepIds) {
+        this.testStepIds = testStepIds;
     }
 
-    public List<TestData> getTestData() {
+    public List<Map<String, String>> getTestData() {
         return testData;
     }
 
-    public void setTestData(List<TestData> testData) {
+    public void setTestData(List<Map<String, String>> testData) {
         this.testData = testData;
     }
 

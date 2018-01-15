@@ -18,8 +18,8 @@ public class TestScriptResourceAsm extends ResourceAssemblerSupport<TestScript, 
         resource.setName(testScript.getName());
         resource.setType(testScript.getType());
         resource.setData(testScript.getTestData());
-        resource.setSteps(testScript.getTestSteps());
-        resource.add(linkTo(TestScriptController.class).slash(testScript.getId()).withSelfRel());
+        resource.setSteps(testScript.getTestStepIds());
+        resource.add(linkTo(TestScriptController.class).slash(testScript.getTestScriptId()).withSelfRel());
         return resource;
     }
 }
