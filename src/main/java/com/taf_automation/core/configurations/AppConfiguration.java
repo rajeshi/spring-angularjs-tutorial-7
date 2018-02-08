@@ -20,12 +20,12 @@ public class AppConfiguration {
 
     @Bean
     public MongoDbFactory mongoDbFactory() {
-        return new SimpleMongoDbFactory(mongoClient(), "test-selenium");
+        return new SimpleMongoDbFactory(mongoClient(), "taf-db");
     }
 
     @Bean
     public MongoClient mongoClient() {
-        return new MongoClient(new MongoClientURI("mongodb://rajesh:rajesh1234@ec2-18-218-111-99.us-east-2.compute.amazonaws.com:27017/test-selenium"));
+        return new MongoClient(new MongoClientURI("mongodb://admin:Test123@ds237855.mlab.com:37855/taf-db"));
     }
 
 }

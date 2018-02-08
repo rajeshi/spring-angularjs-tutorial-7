@@ -9,9 +9,7 @@ import com.taf_automation.rest.resources.TestScriptListResource;
 import com.taf_automation.rest.resources.TestScriptResource;
 import com.taf_automation.rest.resources.asm.TestScriptResourceAsm;
 import com.taf_automation.rest.resources.asm.TestScriptResourceListAsm;
-import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -70,9 +68,9 @@ public class TestScriptController {
         try {
             createdBlogEntry = testScriptService.createTestScript(sentTestScript.toTestScript());
             TestScriptResource createdResource = new TestScriptResourceAsm().toResource(createdBlogEntry);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
-            return new ResponseEntity<TestScriptResource>(createdResource, headers, HttpStatus.CREATED);
+            //HttpHeaders headers = new HttpHeaders();
+            //headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
+            return new ResponseEntity<TestScriptResource>(createdResource, HttpStatus.CREATED);
         } catch (TestScriptNotFoundException e) {
             throw new NotFoundException(e);
         }

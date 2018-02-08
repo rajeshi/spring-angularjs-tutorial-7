@@ -19,6 +19,7 @@ public class LocatorResourceAsm extends ResourceAssemblerSupport<Locator, Locato
     @Override
     public LocatorResource toResource(Locator locator) {
         LocatorResource resource = new LocatorResource();
+        resource.setName(locator.getName());
         resource.setLocatorId(locator.getLocatorId());
         resource.setLocatorBy(locator.getLocatorBy());
         resource.setPageId(locator.getPageId());

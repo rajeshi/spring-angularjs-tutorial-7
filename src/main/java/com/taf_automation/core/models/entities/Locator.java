@@ -13,9 +13,18 @@ public class Locator implements Serializable {
 
     @Id
     private String locatorId;
+    private String name;
     private String pageId;
     private String locatorBy;
     private String value;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getLocatorId() {
         return locatorId;
